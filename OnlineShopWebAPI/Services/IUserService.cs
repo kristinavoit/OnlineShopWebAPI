@@ -5,9 +5,11 @@ using System.Text;
 
 namespace OnlineShopWebAPI.Core.Repositories
 {
-    interface ICartItemRepository : IRepository<CartItem>
+    interface IUserService
     {
-        IEnumerable<CartItem> GetAllWithUsers();
-        CartItem GetWithUsersById(int id);
+        IEnumerable<User> GetAll();
+        User GetById(int id);
+        void Add(User newUser);
+        void Delete(User user);
     }
 }

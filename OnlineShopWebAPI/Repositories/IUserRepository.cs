@@ -7,9 +7,7 @@ namespace OnlineShopWebAPI.Core.Repositories
 {
     interface IUserRepository : IRepository<User>
     {
-        IEnumerable<User> GetAll();
-        User GetById(int id);
-        void Add(int id);
-        void Delete(int id);
+        IEnumerable<User> GetAllWithProducts();
+        User GetWithProductsById(int id);
     }
 }
