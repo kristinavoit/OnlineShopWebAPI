@@ -10,5 +10,6 @@ namespace OnlineShopWebAPI.Core.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
+        public List<Product> Products { get; set; } //1:n
     }
 }

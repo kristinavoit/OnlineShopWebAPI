@@ -14,5 +14,6 @@ namespace OnlineShopWebAPI.Core.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public bool isAdmin { get; set; } //defaul - false
+        public int CartItemId { get; set; } //1:1
     }
 }
