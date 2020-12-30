@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace OnlineShopWebAPI.Domain.Models
+namespace OnlineShopWebAPI.Core.Models
 {
     class Category
     {
