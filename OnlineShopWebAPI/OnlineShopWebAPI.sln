@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopWebAPI.Data", "..\OnlineShopWebAPI.Data\OnlineShopWebAPI.Data.csproj", "{DCA29A4C-A951-4577-BD24-F21D421BD3C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShopWebAPI.Core", "OnlineShopWebAPI.Core.csproj", "{22B2632F-4237-4EEF-A126-FA4A88452642}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +16,10 @@ Global
 		{DCA29A4C-A951-4577-BD24-F21D421BD3C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCA29A4C-A951-4577-BD24-F21D421BD3C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCA29A4C-A951-4577-BD24-F21D421BD3C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22B2632F-4237-4EEF-A126-FA4A88452642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22B2632F-4237-4EEF-A126-FA4A88452642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22B2632F-4237-4EEF-A126-FA4A88452642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22B2632F-4237-4EEF-A126-FA4A88452642}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
