@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OnlineShopWebAPI.Core.Repositories
 {
-    interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
         IEnumerable<User> GetAllWithProducts();
         User GetWithProductsById(int id);

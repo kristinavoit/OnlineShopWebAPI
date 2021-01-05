@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
+using OnlineShopWebAPI.Core.Models;
+using OnlineShopWebAPI.Core.Repositories;
 
 namespace OnlineShopWebAPI.Data.Repositories
 {
@@ -13,14 +17,14 @@ namespace OnlineShopWebAPI.Data.Repositories
         public IEnumerable<CartItem> GetAllWithUsers()
         {
             return OnlineShopDbContext.CartItems
-                .Include(c => c.Users)
+                .Include(c => c.User)
                 .ToList();
         }
         public CartItem GetWithUsersById(int id)
         {
             return OnlineShopDbContext.CartItems
-                .Include(c => c.Users)
-                .SingleOrDefault(c => c.Id == Id);
+                .Include(c => c.User)
+                .SingleOrDefault(c => c.Id == id);
         }
     }
 }

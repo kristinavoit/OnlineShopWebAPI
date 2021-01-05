@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OnlineShopWebAPI.Core.Models
 {
-    class User
+    public class User
     {
         [Key]
         public int Id { get; set; }
@@ -15,5 +15,6 @@ namespace OnlineShopWebAPI.Core.Models
         public string Password { get; set; }
         public bool isAdmin { get; set; } //defaul - false
         public int CartItemId { get; set; } //1:1
+        public Product Product { get; set; }
     }
 }

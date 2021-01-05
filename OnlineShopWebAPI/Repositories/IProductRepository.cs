@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OnlineShopWebAPI.Core.Repositories
 {
-    interface IProductRepository : IRepository<Product>
+    public interface IProductRepository : IRepository<Product>
     {
         IEnumerable<Product> GetAllWithCategories();
         Product GetWithCategoriesById(int id);

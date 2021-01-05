@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineShopWebAPI.Data.Configurations;
+using OnlineShopWebAPI.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,10 +9,10 @@ namespace OnlineShopWebAPI.Data
 {
     public class OnlineShopDbContext : DbContext
     {
-        public DbSet<CartItem> CartItems { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<User> Users { get; set; }
+        public static DbSet<CartItem> CartItems { get; set; }
+        public static DbSet<Category> Categories { get; set; }
+        public static DbSet<Product> Products { get; set; }
+        public static DbSet<User> Users { get; set; }
 
         public OnlineShopDbContext(DbContextOptions<OnlineShopDbContext> options)
             : base (options)
