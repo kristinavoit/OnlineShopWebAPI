@@ -5,11 +5,12 @@ using System.Text;
 
 namespace OnlineShopWebAPI.Core.Repositories
 {
-    interface IProductService
+    public interface IProductService
     {
         IEnumerable<Product> GetAll();
         Product GetById(int id);
-        void Add(Product newProduct);
+        Product Add(Product newProduct);
+        void Update(Product productToUpdate, Product product);
         void Delete(Product product);
     }
 }
