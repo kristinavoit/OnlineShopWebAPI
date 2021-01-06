@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineShopWebAPI.Data\OnlineShopWebAPI.Data.csproj" />
+    <ProjectReference Include="..\OnlineShopWebAPI.Services\OnlineShopWebAPI.Services.csproj" />
     <ProjectReference Include="..\OnlineShopWebAPI\OnlineShopWebAPI.Core.csproj" />
   </ItemGroup>
 

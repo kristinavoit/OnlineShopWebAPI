@@ -12,7 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OnlineShopWebAPI.Core;
+using OnlineShopWebAPI.Core.Repositories;
 using OnlineShopWebAPI.Data;
+using OnlineShopWebAPI.Services;
 
 namespace OnlineShopWebAPI.API
 {
@@ -33,6 +35,8 @@ namespace OnlineShopWebAPI.API
           
             services.AddControllers();
             services.AddScoped <IUnitOfWork, UnitOfWork>();
+
+            services.AddTransient<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
