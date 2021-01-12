@@ -13,6 +13,6 @@ namespace OnlineShopWebAPI.Core.Models
         public DateTime CreatedOn { get; set; }
         public List<Product> Products { get; set; } //1:n
         public double TotalPrice { get; set; }
-        public User User { get; set; }
+        public User Users { get; set; }
     }
 }

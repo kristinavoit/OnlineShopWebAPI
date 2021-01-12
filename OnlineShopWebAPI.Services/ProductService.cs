@@ -16,7 +16,7 @@ namespace OnlineShopWebAPI.Services
         public IEnumerable<Product> GetAll()
         {
             return _unitOfWork.Products
-                .GetAllWithCategories();
+                .GetAll();
         }
         public Product GetById(int id)
         {

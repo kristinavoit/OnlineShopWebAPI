@@ -17,13 +17,13 @@ namespace OnlineShopWebAPI.Data.Repositories
         public IEnumerable<CartItem> GetAllWithUsers()
         {
             return OnlineShopDbContext.CartItems
-                .Include(c => c.User)
+                .Include(c => c.Users)
                 .ToList();
         }
         public CartItem GetWithUsersById(int id)
         {
             return OnlineShopDbContext.CartItems
-                .Include(c => c.User)
+                .Include(c => c.Users)
                 .SingleOrDefault(c => c.Id == id);
         }
     }
