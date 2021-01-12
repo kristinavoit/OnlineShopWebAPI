@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using OnlineShopWebAPI.API.Mapping;
 using OnlineShopWebAPI.Core;
 using OnlineShopWebAPI.Core.Repositories;
 using OnlineShopWebAPI.Data;
@@ -31,14 +33,17 @@ namespace OnlineShopWebAPI.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<OnlineShopDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), 
-                x => x.MigrationsAssembly("OnlineShopWebAPI.Data")));
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddAutoMapper(typeof(MappingProfile));
+            services.AddDbContext<OnlineShopDbContext>(options => options
+            .UseSqlServer(connection), ServiceLifetime.Scoped);
           
             services.AddControllers();
             services.AddScoped <IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<IProductService, ProductService>();
             services.AddSwaggerGen(o =>
+            services.AddAutoMapper(typeof(Startup));
             {
                 o.SwaggerDoc("v1",
                   new OpenApiInfo

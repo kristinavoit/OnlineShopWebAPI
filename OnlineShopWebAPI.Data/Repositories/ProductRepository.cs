@@ -16,14 +16,14 @@ namespace OnlineShopWebAPI.Data.Repositories
         public IEnumerable<Product> GetAllWithCategories()
         {
             return OnlineShopDbContext.Products
-                .Include(p => p.Category)
+                .Include(p => p.Categories)
                 .ToList();
         }
 
         public Product GetWithCategoriesById(int id)
         {
             return OnlineShopDbContext.Products
-                .Include(p => p.Category)
+                .Include(p => p.Categories)
                 .SingleOrDefault(p => p.Id == id);
         }
     }
