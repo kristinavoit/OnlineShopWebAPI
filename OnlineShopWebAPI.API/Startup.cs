@@ -42,8 +42,8 @@ namespace OnlineShopWebAPI.API
             services.AddScoped <IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<IProductService, ProductService>();
-            services.AddSwaggerGen(o =>
             services.AddAutoMapper(typeof(Startup));
+            services.AddSwaggerGen(o =>
             {
                 o.SwaggerDoc("v1",
                   new OpenApiInfo
