@@ -9,8 +9,8 @@ namespace OnlineShopWebAPI.Core.Repositories
     {
         IEnumerable<Product> GetAll();
         Product GetById(int id);
-        Product Add(Product newProduct);
-        void Update(Product productToUpdate, Product product);
+        void Insert(Product newProduct);
+        void Update(Product product);
         void Delete(Product product);
     }
 }

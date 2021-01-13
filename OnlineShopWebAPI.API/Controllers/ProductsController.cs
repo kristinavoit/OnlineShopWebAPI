@@ -16,18 +16,18 @@ namespace OnlineShopWebAPI.API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductService _productService;
+        private IProductService productService;
         private readonly IMapper _mapper;
 
         public ProductsController(IProductService productService, IMapper mapper)
         {
-            this._mapper = mapper;
-            this._productService = productService;
+            this.productService = productService;
+            _mapper = mapper;
         }
         [HttpGet("")]
         public ActionResult<IEnumerable<ProductResource>> GetAll()
         {
-            var products =  _productService.GetAll();
+            var products = productService.GetAll();
             var productResources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(products);
 
             return Ok(productResources);
@@ -36,63 +36,50 @@ namespace OnlineShopWebAPI.API.Controllers
         [HttpGet("{id}")]
         public ActionResult<ProductResource> GetById(int id)
         {
-            var product = _productService.GetById(id);
+            var product = productService.GetById(id);
             var productResource = _mapper.Map<Product, ProductResource>(product);
 
             return Ok(productResource);
         }
 
-        [HttpPost("")]
-        public ActionResult<ProductResource> Add([FromBody] SaveProductResource saveProductResource)
+        [HttpPost]
+        public ActionResult<ProductResource> Add(SaveProductResource model)
         {
-            var validator = new SaveProductResourceValidator();
-            var validationResult = validator.Validate(saveProductResource);
-
-            if (!validationResult.IsValid)
-                return BadRequest(validationResult.Errors); // this needs refining, but for demo it is ok
-
-            var artistToCreate = _mapper.Map<SaveProductResource, Product>(saveProductResource);
-
-            var newProduct = _productService.Add(artistToCreate);
-
-            var product = _productService.GetById(newProduct.Id);
-
-            var productResource = _mapper.Map<Product, ProductResource>(product);
-
-            return Ok(productResource);
+            if (ModelState.IsValid)
+            {
+                Product item = _mapper.Map<SaveProductResource, Product>(model);
+                productService.Insert(item);
+            }
+            return Ok(model);
         }
 
         [HttpPut("{id}")]
-        public ActionResult<ProductResource> UpdateArtist(int id, [FromBody] SaveProductResource saveProductResource)
+        public ActionResult<ProductResource> Edit(int Id, SaveProductResource model)
         {
-            var validator = new SaveProductResourceValidator();
-            var validationResult = validator.Validate(saveProductResource);
-
-            if (!validationResult.IsValid)
-                return BadRequest(validationResult.Errors); // this needs refining, but for demo it is ok
-
-            var productToBeUpdated = _productService.GetById(id);
-
-            if (productToBeUpdated == null)
+            if (Id == 0)
+            {
                 return NotFound();
-
-            var product = _mapper.Map<SaveProductResource, Product>(saveProductResource);
-
-            _productService.Update(productToBeUpdated, product);
-
-            var updatedProduct = _productService.GetById(id);
-
-            var updatedProductResource = _mapper.Map<Product, ProductResource>(updatedProduct);
-
-            return Ok(updatedProductResource);
+            }
+            if (Id != model.Id)
+            {
+                return BadRequest("Ids did not match");
+            }
+            var productItem = productService.GetById(Id);
+            if (productItem == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map<SaveProductResource, Product>(model, productItem);
+            productService.Update(productItem);
+            return Ok(productItem);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var product = _productService.GetById(id);
+            var product = productService.GetById(id);
 
-            _productService.Delete(product);
+            productService.Delete(product);
 
             return NoContent();
         }

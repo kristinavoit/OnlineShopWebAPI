@@ -23,16 +23,14 @@ namespace OnlineShopWebAPI.Services
             return _unitOfWork.Products
                 .GetById(id);
         }
-        public Product Add(Product newProduct)
+        public void Insert(Product newProduct)
         {
             _unitOfWork.Products.Add(newProduct);
             _unitOfWork.Commit();
-            return newProduct;
         }
-        public void Update(Product productToUpdate, Product product)
+        public void Update(Product product)
         {
-            productToUpdate.Id = product.Id;
-            productToUpdate.CategoryId = product.CategoryId;
+            _unitOfWork.Products.Update(product);
 
             _unitOfWork.Commit();
         }
