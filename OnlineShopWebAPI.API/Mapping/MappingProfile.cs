@@ -13,8 +13,10 @@ namespace OnlineShopWebAPI.API.Mapping
         public MappingProfile()
         {
             CreateMap<Product, ProductResource>();
+            CreateMap<Product, SaveProductResource>();
 
             CreateMap<ProductResource, Product>();
+            CreateMap<SaveProductResource, Product>();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using OnlineShopWebAPI.Core;
 using OnlineShopWebAPI.Core.Models;
 using OnlineShopWebAPI.Core.Repositories;
@@ -13,34 +14,31 @@ namespace OnlineShopWebAPI.Services
         {
             this._unitOfWork = unitOfWork;
         }
-        public IEnumerable<Product> GetAll()
+        public async Task<IEnumerable<Product>> GetAll()
         {
-            return _unitOfWork.Products
-                .GetAll();
+            return await _unitOfWork.Products
+                .GetAllAsync();
         }
-        public Product GetById(int id)
+        public async Task<Product> GetById(int id)
         {
-            return _unitOfWork.Products
+            return await _unitOfWork.Products
                 .GetById(id);
         }
-        public Product Add(Product newProduct)
+        public async Task Insert(Product newProduct)
         {
             _unitOfWork.Products.Add(newProduct);
-            _unitOfWork.Commit();
-            return newProduct;
+            await _unitOfWork.CommitAsync();
         }
-        public void Update(Product productToUpdate, Product product)
+        public async Task Update(Product product)
         {
-            productToUpdate.Id = product.Id;
-            productToUpdate.CategoryId = product.CategoryId;
-
-            _unitOfWork.Commit();
+            _unitOfWork.Products.Update(product);
+            await _unitOfWork.CommitAsync();
         }
 
-        public void Delete(Product product)
+        public async Task Delete(Product product)
         {
             _unitOfWork.Products.Delete(product);
-            _unitOfWork.Commit();
+            await _unitOfWork.CommitAsync();
         }
     }
 }

@@ -13,18 +13,15 @@ namespace OnlineShopWebAPI.Data.Repositories
         public ProductRepository(OnlineShopDbContext context)
             : base(context)
         { }
+
         public IEnumerable<Product> GetAllWithCategories()
         {
-            return OnlineShopDbContext.Products
-                .Include(p => p.Categories)
-                .ToList();
+            throw new NotImplementedException();
         }
 
         public Product GetWithCategoriesById(int id)
         {
-            return OnlineShopDbContext.Products
-                .Include(p => p.Categories)
-                .SingleOrDefault(p => p.Id == id);
+            throw new NotImplementedException();
         }
     }
 }

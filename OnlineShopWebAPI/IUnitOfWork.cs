@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OnlineShopWebAPI.Core
 {
@@ -11,6 +12,6 @@ namespace OnlineShopWebAPI.Core
         ICategoryRepository Categories { get; }
         IProductRepository Products { get; }
         IUserRepository Users { get; }
-        int Commit();
+        Task<int> CommitAsync();
     }
 }
