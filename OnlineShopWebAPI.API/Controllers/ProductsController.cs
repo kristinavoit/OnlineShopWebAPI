@@ -16,45 +16,45 @@ namespace OnlineShopWebAPI.API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private IProductService productService;
+        private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
         public ProductsController(IProductService productService, IMapper mapper)
         {
-            this.productService = productService;
-            _mapper = mapper;
+            this._mapper = mapper;
+            this._productService = productService;
         }
         [HttpGet("")]
-        public ActionResult<IEnumerable<ProductResource>> GetAll()
+        public async Task<ActionResult<IEnumerable<ProductResource>>> GetAll()
         {
-            var products = productService.GetAll();
+            var products = await _productService.GetAll();
             var productResources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(products);
 
             return Ok(productResources);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ProductResource> GetById(int id)
+        public async Task<ActionResult<ProductResource>> GetById(int id)
         {
-            var product = productService.GetById(id);
+            var product = await _productService.GetById(id);
             var productResource = _mapper.Map<Product, ProductResource>(product);
 
             return Ok(productResource);
         }
 
         [HttpPost]
-        public ActionResult<ProductResource> Add(SaveProductResource model)
+        public async Task<ActionResult<ProductResource>> Add(SaveProductResource model)
         {
             if (ModelState.IsValid)
             {
                 Product item = _mapper.Map<SaveProductResource, Product>(model);
-                productService.Insert(item);
+                await _productService.Insert(item);
             }
             return Ok(model);
         }
 
         [HttpPut("{id}")]
-        public ActionResult<ProductResource> Edit(int Id, SaveProductResource model)
+        public async Task<ActionResult<ProductResource>> Edit(int Id, SaveProductResource model)
         {
             if (Id == 0)
             {
@@ -64,22 +64,22 @@ namespace OnlineShopWebAPI.API.Controllers
             {
                 return BadRequest("Ids did not match");
             }
-            var productItem = productService.GetById(Id);
+            var productItem = await _productService.GetById(Id);
             if (productItem == null)
             {
                 return NotFound();
             }
             _mapper.Map<SaveProductResource, Product>(model, productItem);
-            productService.Update(productItem);
+            await _productService.Update(productItem);
             return Ok(productItem);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var product = productService.GetById(id);
+            var product = await _productService.GetById(id);
 
-            productService.Delete(product);
+            await _productService.Delete(product);
 
             return NoContent();
         }

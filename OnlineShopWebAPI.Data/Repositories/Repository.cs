@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OnlineShopWebAPI.Data.Repositories
 {
@@ -25,14 +26,14 @@ namespace OnlineShopWebAPI.Data.Repositories
             Context.SaveChanges();
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return Context.Set<T>().ToList();
+            return await Context.Set<T>().ToListAsync();
         }
 
-        public T GetById(int id)
+        public async Task<T> GetById(int id)
         {
-            return Context.Set<T>().Find(id);
+            return await Context.Set<T>().FindAsync(id);
         }
 
         public void Delete(T item)

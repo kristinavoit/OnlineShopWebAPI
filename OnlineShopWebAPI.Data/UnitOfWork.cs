@@ -4,6 +4,7 @@ using OnlineShopWebAPI.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OnlineShopWebAPI.Data
 {
@@ -26,9 +27,9 @@ namespace OnlineShopWebAPI.Data
 
         public IUserRepository Users => _userRepository = _userRepository ?? new UserRepository(_context);
 
-        public int Commit()
+        public async Task<int> CommitAsync()
         {
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync();
         }
 
         public void Dispose()

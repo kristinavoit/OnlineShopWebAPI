@@ -2,15 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OnlineShopWebAPI.Core.Repositories
 {
     public interface IProductService
     {
-        IEnumerable<Product> GetAll();
-        Product GetById(int id);
-        void Insert(Product newProduct);
-        void Update(Product product);
-        void Delete(Product product);
+        Task<IEnumerable<Product>> GetAll();
+        Task<Product> GetById(int id);
+        Task Insert(Product newProduct);
+        Task Update(Product product);
+        Task Delete(Product product);
     }
 }
